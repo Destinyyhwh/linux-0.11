@@ -1,0 +1,32 @@
+关于"a.out"可执行文件格式的说明：
+
+用命令“objdump -dlx  mysh”可以查看可执行文件mysh的格式：
+
+mysh：     文件格式 a.out-i386-linux
+mysh
+体系结构：i386， 标志 0x000001be：
+EXEC_P, HAS_LINENO, HAS_DEBUG, HAS_SYMS, HAS_LOCALS, WP_TEXT, D_PAGED
+起始地址 0x00000000
+
+节：
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00001000  00000000  00000000  00000400  2**3
+                  CONTENTS, ALLOC, LOAD, CODE
+  1 .data         00001000  00001000  00001000  00001400  2**3
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00002000  00002000  00000000  2**3
+                  ALLOC
+	...
+
+说明：
+.text: 代码节（段）；.data: 数据段；
+.bss: 未初始化数据段，此段在可执行文件中不占空间，但在加载到内存中时占用内存空间，初值全为0。
+
+Size: 指段的大小（字节，十六进制）
+VMA: 此段在进程虚空间中的位置，相对于进程虚空间起始地址的偏移（字节）。
+File off: 此段在可执行文件中的位置，相对于文件起始位置的偏移。
+
+
+参考资料：
+  http://www.sourceware.org/binutils/docs/binutils/objdump.html
+  https://blog.csdn.net/suz_cheney/article/details/24586745
